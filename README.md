@@ -25,14 +25,14 @@ The project consists of two main components:
 ## 🏗 Architecture
 
 ```
-+-------------+        TLS        +----------------+        +-------------+
++-------------+        TLS        +----------------+         +-------------+
 |   Agent     |  ─────────────▶  |   Collector     | ─────▶ | ClickHouse  |
-| (ufw.log)   |                  |                |        |             |
-+-------------+                  +----------------+        +-------------+
-       │                                │
-       │                                ├─ Parsing (regex)
-       │                                ├─ GeoIP enrichment
-       │                                └─ Batch insert
+| (ufw.log)   |                   +----------------+         |             |
++-------------+                         │                    +-------------+
+                                        │
+                                        ├─ Parsing (regex)
+                                        ├─ GeoIP enrichment
+                                        └─ Batch insert
 ```
 
 ---
