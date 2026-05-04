@@ -122,27 +122,38 @@ server.crt
 ## 🗄 ClickHouse Schema (example)
 
 ```sql
-CREATE TABLE logs (
+CREATE TABLE logs
+(
     id UInt64,
+
     time UInt32,
-    client String,
-    host String,
-    action String,
-    src String,
-    dst String,
-    proto String,
+    dt DateTime MATERIALIZED toDateTime(time),
+
+    client LowCardinality(String),
+    host LowCardinality(String),
+    action LowCardinality(String),
+
+    src IPv4,
+    dst IPv4,
+    proto LowCardinality(String),
+
     srcPort UInt16,
     dstPort UInt16,
-    inInterface String,
-    outInterface String,
-    country String,
-    lat Float64,
-    lon Float64,
+
+    inInterface LowCardinality(String),
+    outInterface LowCardinality(String),
+
+    country FixedString(2),
+    lat Float32,
+    lon Float32,
+
     asn UInt32,
-    org String
+    org LowCardinality(String)
 )
-ENGINE = MergeTree()
-ORDER BY (time, src);
+ENGINE = MergeTree
+PARTITION BY toDate(dt)
+ORDER BY (dt, action, src, dstPort)
+SETTINGS index_granularity = 8192;
 ```
 
 ---
