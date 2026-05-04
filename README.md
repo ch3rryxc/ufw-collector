@@ -27,8 +27,8 @@ The project consists of two main components:
 ```
 +-------------+        TLS        +----------------+         +-------------+
 |   Agent     |  ─────────────▶  |   Collector     | ─────▶ | ClickHouse  |
-| (ufw.log)   |                   +----------------+         |             |
-+-------------+                         │                    +-------------+
+| (ufw.log)   |                   +----------------+         +-------------+
++-------------+                         │                    
                                         │
                                         ├─ Parsing (regex)
                                         ├─ GeoIP enrichment
