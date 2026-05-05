@@ -39,7 +39,7 @@ eventQueue = queue.Queue(maxsize = queueMaxSize)
 shutdownEvent = threading.Event()
 
 clickhouseHost = '127.0.0.1'
-clickhousePort = 9000  # FIXED
+clickhousePort = 9000
 
 # ================= ENRICHMENT =================
 geoReader = geoip2.database.Reader('data/GeoLite2-City.mmdb')
