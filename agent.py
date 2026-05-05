@@ -82,7 +82,6 @@ def followFile(path):
 
                 newFile = open(path, 'r')
 
-                # дочитываем остаток старого файла
                 for remaining in fileObj:
                     yield remaining.rstrip()
 
